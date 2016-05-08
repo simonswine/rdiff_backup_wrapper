@@ -24,14 +24,20 @@ module RdiffBackupWrapper
     end
 
     def run
+      output = {}
+
       command = [
         'nice',
         'ionice', '-c', '3',
       ] + cmd
+
       Open3.popen3(*command) do |i,o,e,t|
-          p o.read
-          p e.read
+          output[:name] = config['name']
+          output[:stdout] = o.read
+          output[:stderr] = e.read
+          output[:retval] = t.value
       end
+      output
     end
 
     def cmd

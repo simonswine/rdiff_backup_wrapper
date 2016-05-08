@@ -1,3 +1,5 @@
+require 'open3'
+
 module RdiffBackupWrapper
   class Backup
     attr_reader :config
@@ -26,7 +28,7 @@ module RdiffBackupWrapper
         'nice',
         'ionice', '-c', '3',
       ] + cmd
-      Open3.popen3(command) do |i,o,e,t|
+      Open3.popen3(*command) do |i,o,e,t|
           p o.read
           p e.read
       end

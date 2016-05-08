@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "rdiff_backup_wrapper"
+r = RdiffBackupWrapper::RdiffBackupWrapper.new
+r.run
